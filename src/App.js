@@ -79,7 +79,8 @@ class App extends Component {
     return (
       <div className="App">
       <Header />
-      <TechSpecs features={features} /> 
+      {/* <TechSpecs features={features} />  */}
+      <TechSpecs features={this.props.features} />
       <main>
           <section className="main__summary">
             <h3>NEW GREENLEAF 2018</h3>

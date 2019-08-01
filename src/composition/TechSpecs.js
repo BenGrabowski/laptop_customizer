@@ -3,15 +3,13 @@ import Feature from './Feature';
 
 class TechSpecs extends Component {
     render() {
-     const techList = this.props.features.map(item => {
-         return (
-             <Feature 
-                name={item.key}
-                items={item.props}/>
-         )
-     })
-       
-
+       const techList = Object.keys(this.props.features)
+       .map(feature => {
+           return (
+               <Feature options={feature}/>
+           )
+       })
+        
         return (
             <div className="Feature-List">
                 <section className="main__form">
@@ -21,6 +19,8 @@ class TechSpecs extends Component {
             </div>
         );
     }
+       
 }
+
 
 export default TechSpecs;
