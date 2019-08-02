@@ -4,9 +4,9 @@ import Feature from './Feature';
 class TechSpecs extends Component {
     render() {
        const techList = Object.keys(this.props.features)
-       .map(feature => {
-           return (
-               <Feature options={feature}/>
+       .map((feature, index) => {
+           return (  
+               <Feature options={this.props.features[feature]}/>
            )
        })
         
