@@ -7,7 +7,6 @@ import OrderSummary from './composition/OrderSummary';
 class App extends Component {
   constructor(props){
     super(props);
-    // this.updateFeature = this.updateFeature.bind(this);
     this.state = {
       selected: {
         Processor: {
@@ -41,7 +40,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Header />
+        <Header />
       <main>
         <TechSpecs 
           features={this.props.features}
@@ -49,7 +48,7 @@ class App extends Component {
           updateFeature={this.updateFeature} 
         />
         <OrderSummary selected={this.state.selected} />
-        </main>
+      </main>
       </div>
     );
   }

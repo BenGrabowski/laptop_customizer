@@ -11,7 +11,7 @@ class TechSpecs extends Component {
                     featureName={feature}
                     selected={this.props.selected}
                     updateFeature={this.props.updateFeature}
-                    // key={index}
+                    key={index}
                 />
             )
       });      
