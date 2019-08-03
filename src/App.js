@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './composition/Header';
 import TechSpecs from './composition/TechSpecs';
+import OrderSummary from './composition/OrderSummary';
 
 class App extends Component {
   constructor(props){
     super(props);
+    // this.updateFeature = this.updateFeature.bind(this);
     this.state = {
       selected: {
         Processor: {
@@ -28,7 +30,7 @@ class App extends Component {
     }
   }
 
-  updateFeature(feature, newValue) {
+  updateFeature = (feature, newValue) => {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
     this.setState({
@@ -37,45 +39,6 @@ class App extends Component {
   }
 
   render() {
-    const summary = Object.keys(this.state.selected) 
-          .map(key => <div className="summary__option" key={key}> 
-            <div className="summary__option__label">{key}  </div> 
-            <div className="summary__option__value">{this.state.selected[key].name}</div>
-            <div className="summary__option__cost">
-              { new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                  .format(this.state.selected[key].cost) }
-            </div>
-        </div>)
-
-    const total = Object.keys(this.state.selected)
-          .reduce((acc, curr) => acc + this.state.selected[curr].cost, 0);    
-
-
-    const features = Object.keys(this.props.features)
-          .map(key => {
-            const options = this.props.features[key].map((item, index) => {
-              const selectedClass = item.name === this.state.selected[key].name ? 'feature__selected' : '';
-              const featureClass = 'feature__option ' + selectedClass;
-              
-              return <li key={index} className="feature__item">
-                <div className={featureClass}
-                  
-                  onClick={e => this.updateFeature(key, item)}>
-                    { item.name }
-                    ({ new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                      .format(item.cost) })
-                </div>
-              </li>
-            });
-
-            return <div className="feature" key={key}>
-              <div className="feature__name">{key}</div>
-              <ul className="feature__list">
-                { options }
-              </ul>
-            </div>
-          });      
-
     return (
       <div className="App">
       <Header />
@@ -85,17 +48,7 @@ class App extends Component {
           selected={this.state.selected}
           updateFeature={this.updateFeature} 
         />
-          <section className="main__summary">
-            <h3>NEW GREENLEAF 2018</h3>
-            {summary}
-            <div className="summary__total">
-              <div className="summary__total__label">Your Price: </div>
-              <div className="summary__total__value">
-              { new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                  .format(total) }
-              </div>
-            </div>
-          </section>
+        <OrderSummary selected={this.state.selected} />
         </main>
       </div>
     );
