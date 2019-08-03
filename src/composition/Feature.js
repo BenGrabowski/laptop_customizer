@@ -4,15 +4,25 @@ import Item from './Item';
 class Feature extends Component {
     
     render() {
-        const items = this.props.options.map(item => {
-            return (
-                <Item name={item.name} />
-            )
-        });
-        
+      const options = this.props.featureOptions.map((opt, index) => {
+          return <Item
+                    name={opt.name}
+                    cost={opt.cost}
+                    key={index}
+                    selected={this.props.selected}
+                    parent={this.props.featureName}
+                    updateFeature={this.props.updateFeature}
+                />
+      });
+      
         return (
-            {items}
-        )
+            <div className="feature">
+              <div className="feature__name">{this.props.featureName}</div>
+              <ul className="feature__list">
+                { options }
+              </ul>
+            </div>
+      )
     }
 }
 
