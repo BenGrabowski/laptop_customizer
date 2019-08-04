@@ -16,7 +16,7 @@ class Feature extends Component {
       });
       
         return (
-            <div className="feature" key={this.props.key}>
+            <div className="feature">
               <div className="feature__name">{this.props.featureName}</div>
               <ul className="feature__list">
                 { options }

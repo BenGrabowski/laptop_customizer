@@ -6,7 +6,7 @@ class Item extends Component {
         const featureClass = 'feature__option ' + selectedClass;
         
         return (
-            <li key={this.props.key} className="feature__item">
+            <li className="feature__item">
                 <div className={featureClass}
                     onClick={e => this.props.updateFeature(this.props.parent, this.props)}>
                     { this.props.name }
